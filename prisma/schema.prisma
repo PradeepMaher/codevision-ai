@@ -1,0 +1,72 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String          @id @default(cuid())
+  clerkId        String          @unique
+  name           String?
+  email          String?
+  image          String?
+  createdAt      DateTime        @default(now())
+  chatHistory    ChatHistory[]
+  submissions    Submission[]
+  generatedItems GeneratedContent[]
+  testResults    TestResult[]
+}
+
+model ChatHistory {
+  id        String   @id @default(cuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  question  String
+  answer    String
+  createdAt DateTime @default(now())
+}
+
+model Problem {
+  id          String        @id @default(cuid())
+  title       String
+  description String
+  difficulty  String
+  type        String
+  solution    String
+  submissions Submission[]
+}
+
+model Submission {
+  id         String   @id @default(cuid())
+  user       User     @relation(fields: [userId], references: [id])
+  userId     String
+  problem    Problem  @relation(fields: [problemId], references: [id])
+  problemId  String
+  code       String
+  result     String
+  score      Int
+  createdAt  DateTime @default(now())
+}
+
+model GeneratedContent {
+  id        String   @id @default(cuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  prompt    String
+  response  String
+  type      String
+  createdAt DateTime @default(now())
+}
+
+model TestResult {
+  id        String   @id @default(cuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  score     Int
+  topic     String
+  feedback  String
+  createdAt DateTime @default(now())
+}
