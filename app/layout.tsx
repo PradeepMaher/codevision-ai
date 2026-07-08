@@ -15,7 +15,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "CodeVision AI",
-  description: "AI coding and SQL mentor platform for guided learning, practice, and optimization.",
+  description: "Generator-first AI platform for code and SQL demos.",
+  metadataBase: new URL("https://codevision-ai.vercel.app"),
 };
 
 export default function RootLayout({
@@ -24,15 +25,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full bg-slate-950 text-slate-100">
-        <ClerkProvider>
-          {children}
-        </ClerkProvider>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html
+        lang="en"
+        data-scroll-behavior="smooth"
+        className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      >
+        <body className="min-h-full bg-[#F8FAFC] text-[#0F172A]">{children}</body>
+      </html>
+    </ClerkProvider>
   );
 }

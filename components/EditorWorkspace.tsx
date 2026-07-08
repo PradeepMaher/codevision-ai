@@ -1,8 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Editor, { OnChange, OnMount } from "@monaco-editor/react";
-import { ChevronDown, Play, RefreshCcw, Save } from "lucide-react";
+import Editor from "@monaco-editor/react";
+import { Play, RefreshCcw, Save } from "lucide-react";
 
 const languageOptions = ["javascript", "typescript", "python", "java", "sql"];
 
@@ -23,7 +23,7 @@ export default function EditorWorkspace() {
   };
 
   return (
-    <div className="rounded-3xl border border-slate-800/80 bg-slate-950/80 p-4 shadow-xl shadow-slate-950/20">
+    <div className="rounded-3xl border border-emerald-200 bg-white/95 p-4 shadow-xl shadow-emerald-100">
       <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex flex-wrap gap-2">
           {languageOptions.map((option) => (
@@ -31,7 +31,7 @@ export default function EditorWorkspace() {
               key={option}
               onClick={() => setLanguage(option)}
               className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
-                language === option ? "bg-cyan-500 text-slate-950" : "bg-slate-900 text-slate-300 hover:bg-slate-800"
+                language === option ? "bg-emerald-600 text-white" : "bg-emerald-50 text-emerald-900 hover:bg-emerald-100"
               }`}
             >
               {option}
@@ -39,13 +39,13 @@ export default function EditorWorkspace() {
           ))}
         </div>
         <div className="flex flex-wrap gap-2">
-          <button className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:bg-slate-800">
+          <button className="inline-flex items-center gap-2 rounded-full bg-emerald-100 px-4 py-2 text-sm font-semibold text-emerald-900 transition hover:bg-emerald-200">
             <RefreshCcw size={16} /> Clear
           </button>
-          <button className="inline-flex items-center gap-2 rounded-full bg-cyan-500 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-cyan-400" onClick={handleRun}>
+          <button className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-700" onClick={handleRun}>
             <Play size={16} /> Run
           </button>
-          <button className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:bg-slate-800">
+          <button className="inline-flex items-center gap-2 rounded-full bg-emerald-100 px-4 py-2 text-sm font-semibold text-emerald-900 transition hover:bg-emerald-200">
             <Save size={16} /> Save
           </button>
         </div>
