@@ -4,6 +4,10 @@
 
 The project combines a modern web interface with generative AI to provide intelligent assistance for programming-related tasks.
 
+AI-powered coding assistant for understanding, analyzing, debugging, and improving code.
+
+🚀 **Live Demo:** https://codevision-ai-ten.vercel.app/generate
+
 ## 🚀 Features
 
 * 🤖 AI-powered coding assistance
